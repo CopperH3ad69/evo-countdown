@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remearing time</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/prelink.css">
+</head>
+<style>
+    body {
+
+        background-image: url(12.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        justify-content: center;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        box-sizing: border-box;
+
+    }
+
+    .side-menu {
+        position: fixed;
+        top: 50%;
+        right: -300px;
+        width: 300px;
+        background-color: aliceblue;
+        transition: .4s linear;
+    }
+
+    .side-menu a {
+        display: block;
+        padding: 14px 10px;
+        color: #333;
+        font-size: 20px;
+        transition: .4s linear;
+    }
+
+    .side-menu.active {
+        right: 0;
+
+    }
+
+    .side-menu a i {
+        width: 40px;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .side-menu a:hover {
+        background-color: #333;
+        color: wheat;
+    }
+
+    .toggle-btn {
+        position: absolute;
+        left: -40px;
+        top: 0;
+        width: 40px;
+        height: 60px;
+        background: #111111;
+        color: white;
+        line-height: 60px;
+        text-align: center;
+        font-size: 20px;
+        cursor: pointer;
+        padding-top: 20px;
+    }
+
+    .contact-section {
+        width: 100%;
+        display: flex;
+        padding-top: 500px;
+        align-items: center;
+        left: 30px;
+    }
+
+    .contact-info {
+        color: #fff;
+
+        max-width: 800px;
+        line-height: 50px;
+        padding-left: 50px;
+        font-size: 18px;
+        left: 30px;
+    }
+
+    .contact-info i {
+        margin-right: 10px;
+    }
+
+    .container1 {
+
+        box-shadow: 10px 10px 100px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        width: 300px;
+        height: 300px;
+        padding: 50px 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+
+    }
+
+    .container1_img {
+        background-image: url(/evo2/static/memes.jpg);
+        max-width: 300px;
+        ;
+        max-height: 300px;
+
+    }
+</style>
+
+<body>
+
+    <form>
+        <div class="container">
+            <input type="date" id="date" class="date">
+            <select name="time" id="time" class="dat">
+                <option value="08:00:00">8:00-16:00</option>
+                <option value="16:00:00">16:00-00:00</option>
+                <option value="00:00:00">00:00-08:00</option>
+            </select>
+
+            <h1 id="result">Result: </h1>
+            <input type="button" id="calculate-btn" value="Calculate" class="calc" />
+
+            <a href="/" class="back-btn">go back</a>
+        </div>
+    </form>
+
+
+    <script>
+        const buttonElement = document.getElementById('calculate-btn')
+        const dateInput = document.getElementById('date')
+        const timeInput = document.getElementById('time')
+        const resultHeader = document.getElementById('result')
+        const day = 86400
+        const hour = 3600
+        const minute = 60
+
+        buttonElement.onclick = () => {
+            let date = new Date(`${dateInput.value}T${timeInput.value}`)
+            let timeRemaining = (date - new Date()) / 1000
+            let days = Math.floor(timeRemaining / day);
+            let hours = Math.floor((timeRemaining % day) / hour);
+            let minutes = Math.floor((timeRemaining % hour) / minute);
+            console.log(`${days} days ${hours} hours ${minutes} minutes`)
+            resultHeader.innerText = `${days} days ${hours} hours ${minutes} minutes`
+        }
+    </script>
+
+    <style>
+        .submit_button {
+            background: none;
+            min-width: 90px;
+            padding: 10px;
+            color: white;
+            border-radius: 7px;
+            border: 2px solid #030d52;
+
+        }
+
+        .submit_button:hover {
+            background-color: white;
+            color: #030d52;
+            transition: .4s linear;
+        }
+    </style>
+</body>
+
+</html>
